@@ -106,6 +106,7 @@ go test ./... -v
 ├── handler               # HTTP handlers
 ├── logic                 # Pricing logic
 ├── models                # Data models
+├── router                # HTTP routes
 ├── main.go               # Application entrypoint
 ├── go.mod / go.sum       # Go dependencies
 ├── README.md             # Project documentation
