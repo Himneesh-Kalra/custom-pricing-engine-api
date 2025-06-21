@@ -9,5 +9,5 @@ import (
 
 func main() {
 	log.Println("Server running on http://localhost:8080")
-	log.Fatal(http.ListenAndServe(":8080", router.NewRouter()).Error())
+	log.Fatal(http.ListenAndServe(":8080", router.NewRouter()))
 }
