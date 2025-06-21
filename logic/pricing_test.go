@@ -6,6 +6,10 @@ import (
 	"github.com/Himneesh-Kalra/custom-pricing-engine-api/models"
 )
 
+func floatPtr(f float64) *float64 {
+	return &f
+}
+
 func TestCalculatePrice(t *testing.T) {
 	tests := []struct {
 		name     string
@@ -18,7 +22,7 @@ func TestCalculatePrice(t *testing.T) {
 			order: models.Order{
 				ProductID: "H1012",
 				Quantity:  2,
-				UnitPrice: 200,
+				UnitPrice: floatPtr(200),
 			},
 			rules: map[string]models.DiscountRule{
 				"H1012": {ProductID: "H1012", Type: "percentage", Value: 20},
@@ -35,7 +39,7 @@ func TestCalculatePrice(t *testing.T) {
 			order: models.Order{
 				ProductID: "PH03N1X",
 				Quantity:  4,
-				UnitPrice: 300,
+				UnitPrice: floatPtr(300),
 			},
 			rules: map[string]models.DiscountRule{
 				"PH03N1X": {ProductID: "PH03N1X", Type: "flat", Value: 70},
@@ -52,7 +56,7 @@ func TestCalculatePrice(t *testing.T) {
 			order: models.Order{
 				ProductID: "K132",
 				Quantity:  5,
-				UnitPrice: 150,
+				UnitPrice: floatPtr(150),
 			},
 			rules: map[string]models.DiscountRule{},
 			expected: models.ComputeResult{

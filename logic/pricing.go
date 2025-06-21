@@ -7,7 +7,7 @@ import (
 )
 
 func CalculatePrice(order models.Order, ruleMap map[string]models.DiscountRule) models.ComputeResult {
-	originalPrice := float64(order.Quantity) * order.UnitPrice
+	originalPrice := float64(order.Quantity) * *order.UnitPrice
 	discount := 0.0
 
 	rule, exists := ruleMap[order.ProductID]

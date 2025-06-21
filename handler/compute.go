@@ -31,6 +31,37 @@ func ComputeHandler(w http.ResponseWriter, r *http.Request) {
 
 	if len(req.Orders) == 0 {
 		http.Error(w, "No orders provided", http.StatusBadRequest)
+		return
+	}
+
+	for _, order := range req.Orders {
+		if order.ProductID == "" {
+			http.Error(w, "Missing product id in one or more orders", http.StatusBadRequest)
+			return
+		}
+
+		if order.UnitPrice == nil {
+			http.Error(w, "Missing unit price in one or more orders", http.StatusBadRequest)
+			return
+		}
+
+		if *order.UnitPrice <= 0 {
+			http.Error(w, "Unit price for a product cannot be negative or zero", http.StatusBadRequest)
+			return
+		}
+	}
+
+	for _, rule := range req.DiscountRules {
+
+		if rule.ProductID == "" {
+			http.Error(w, "Missing product id in one or more discount rules", http.StatusBadRequest)
+			return
+		}
+
+		if rule.Type == "" {
+			http.Error(w, "Missing discount type in one or morediscount rules", http.StatusBadRequest)
+			return 
+		}
 	}
 
 	ruleMap := make(map[string]models.DiscountRule)

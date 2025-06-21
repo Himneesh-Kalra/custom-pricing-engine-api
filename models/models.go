@@ -3,7 +3,7 @@ package models
 type Order struct {
 	ProductID string  `json:"product_id"`
 	Quantity  int     `json:"quantity"`
-	UnitPrice float64 `json:"unit_price"`
+	UnitPrice *float64 `json:"unit_price"`
 }
 
 type DiscountRule struct {
